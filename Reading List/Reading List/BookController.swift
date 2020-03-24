@@ -22,6 +22,17 @@ class BookController {
         return booksURL
     }
     
+    func createNewBook(title: String, reasonToRead: String) {
+        let newBook = Book(title: title, reasonToRead: reasonToRead)
+        books.append(newBook)
+        saveToPersistentStore()
+    }
+    
+    func deleteBook(book: Book) {
+        
+        guard let index = books.firstIndex(of: book) else { return }
+        books.remove(at: index)
+    }
     
     func saveToPersistentStore() {
        
@@ -48,6 +59,5 @@ class BookController {
             print("There was an error loading your data \(error)")
         }
     }
-    
     
 }
